@@ -6,7 +6,7 @@ from provided_code.general_functions import get_paths, load_file
 class DataLoader:
     """Generates data for tensorflow"""
 
-    def __init__(self, file_paths_list, batch_size=2, patient_shape=(128, 128, 128), shuffle=True,
+    def __init__(self, file_paths_list, batch_size=6, patient_shape=(128, 128, 128), shuffle=True,
                  mode_name='training_model'):
         """Initialize the DataLoader class, which loads the data for OpenKBP
         :param file_paths_list: list of the directories or single files where data for each patient is stored

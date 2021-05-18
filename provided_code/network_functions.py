@@ -8,6 +8,7 @@ import pandas as pd
 import tqdm
 from tensorflow.keras.models import load_model
 from tensorflow.keras.optimizers import Adam
+from random import randint
 
 from provided_code.general_functions import get_paths, make_directory_and_return_path, sparse_vector_function
 from provided_code.network_architectures import DefineDoseFromCT
@@ -150,8 +151,17 @@ class PredictionModel(DefineDoseFromCT):
         :param epoch_number: The epoch
         """
         # Load images
+        Nbatches = self.data_loader.batch_size
         image_batch = self.data_loader.get_batch(batch_index)
-
+        RandomSlice=randint(3,125)
+        var=2
+        
+        for i in range(Nbatches):
+            image_batch['ct'][i]=image_batch['ct'][i][:,:,RandomSlice-var:RandomSlice+var]
+            image_batch['structure_masks'][i]=image_batch['structure_masks'][i][:,:,RandomSlice-var:RandomSlice+var]
+            image_batch['dose'][i]=image_batch['dose'][i][:,:,RandomSlice-var:RandomSlice+var]
+            
+            
         # Train the generator model with the batch
         model_loss = self.generator.train_on_batch([image_batch['ct'], image_batch['structure_masks']],
                                                    image_batch['dose'])

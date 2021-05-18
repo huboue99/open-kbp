@@ -8,7 +8,7 @@ from provided_code.network_functions import PredictionModel
 if __name__ == '__main__':
     # Define project directories
     # TODO: Must define the path of where the data is stored.
-    primary_directory = '/Users/aaronbabier/Documents/GitHub/open-kbp-post' #'/home/user_name/open-kbp'  # directory where everything is stored
+    primary_directory = '/Users/bouttierhugo/Desktop/StageCode/open-kbp' #'/home/user_name/open-kbp'  # directory where everything is stored
     # Define directory where given data is stored
     main_data_dir = '{}/provided-data'.format(primary_directory)
     training_data_dir = '{}/train-pats'.format(main_data_dir)
@@ -62,3 +62,6 @@ if __name__ == '__main__':
     # Zip dose to submit
     submission_dir = make_directory_and_return_path('{}/submissions'.format(results_dir))
     shutil.make_archive('{}/{}'.format(submission_dir, prediction_name), 'zip', dose_prediction_model_hold_out.prediction_dir)
+    
+
+    
