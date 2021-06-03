@@ -154,12 +154,12 @@ class PredictionModel(DefineDoseFromCT):
         Nbatches = self.data_loader.batch_size
         image_batch = self.data_loader.get_batch(batch_index)
         RandomSlice=randint(3,125)
-        var=2
+        var=3
         
         for i in range(Nbatches):
-            image_batch['ct'][i]=image_batch['ct'][i][:,:,RandomSlice-var:RandomSlice+var]
-            image_batch['structure_masks'][i]=image_batch['structure_masks'][i][:,:,RandomSlice-var:RandomSlice+var]
-            image_batch['dose'][i]=image_batch['dose'][i][:,:,RandomSlice-var:RandomSlice+var]
+            image_batch['ct'][i]==image_batch['ct'][i][:,:,RandomSlice-1-var:RandomSlice+1+var]
+            image_batch['structure_masks'][i]==image_batch['structure_masks'][i][:,:,RandomSlice-var-1:RandomSlice+1+var]
+            image_batch['dose'][i]==image_batch['dose'][i][:,:,RandomSlice-1-var:RandomSlice+1+var]
             
             
         # Train the generator model with the batch
